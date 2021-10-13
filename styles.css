@@ -46,10 +46,40 @@ button {
     width: 40%;
     margin: 30px auto;
 }
+.results {
+    width: 60%;
+    margin: 30px auto;
+    background-color: lightblue;
+    border-radius: 15px;
+}
 .searches p {
     text-align: center;
     background-color: aquamarine;
     border-radius: 5px;
     width: 50%;
     margin: 5px auto;
+}
+.prop {
+padding: 5px;
+}
+
+.prop h2 {
+    width: fit-content;
+    margin: 15px auto;
+}
+
+.prop p {
+    width: 90%;
+    margin: 15px auto;
+}
+
+.prop img {
+    max-width: 170px;
+    margin: 15px auto;
+    display: block;
+}
+
+.error {
+    margin: 5px;
+    color: lightcoral;
 }
