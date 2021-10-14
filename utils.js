@@ -1,4 +1,4 @@
-import {SEARCH_RESULTS, SEARCH_TEXT_INPUT, searches} from "./const.js";
+import {SEARCH_RESULTS, SEARCH_TEXT_INPUT, searches, UP_ARROW_BUTTON, VERTICAL_OFFSET} from "./const.js";
 
 export function validate(event) {
     event.target.value = event.target.value.replace(/[^a-z]/i, '');
@@ -26,7 +26,7 @@ the given location.</p>`);
         searchResult.forEach( (item) => {
             SEARCH_RESULTS.insertAdjacentHTML("beforeend", getPropertyMarkup(item));
         });
-        scroll({top: SEARCH_RESULTS.getBoundingClientRect().top + pageYOffset, left: 0, behavior: "smooth"});
+        scrollToFirst();
 }
 
 function getPropertyMarkup(prop){
@@ -37,4 +37,17 @@ function getPropertyMarkup(prop){
         <img src="${prop.image_url}">
         </div>
     `;
+}
+
+export function scrollToFirst(){
+    scroll({top: SEARCH_RESULTS.getBoundingClientRect().top + pageYOffset, left: 0, behavior: "smooth"});
+    UP_ARROW_BUTTON.classList.add("hidden");
+    }
+
+export function checkArrowButton(){
+    if (SEARCH_RESULTS.getBoundingClientRect().top < VERTICAL_OFFSET) {
+        UP_ARROW_BUTTON.classList.remove("hidden");
+    } else {
+        UP_ARROW_BUTTON.classList.add("hidden");
+    }
 }
