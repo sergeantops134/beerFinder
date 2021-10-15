@@ -17,7 +17,6 @@ export function search() {
     PageLoader.reset();
     PageLoader.setQuery(SEARCH_TEXT_INPUT.value.replace(" ", "_"));
     PageLoader.loadPage();
-    SEARCH_TEXT_INPUT.value = "";
 }
 
 export function getPropertyMarkup(prop) {
