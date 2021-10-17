@@ -7,6 +7,7 @@ import {
 } from "./const.js";
 import {PageLoader} from "./PageLoader.js"
 import {SearchesHolder} from "./SearchesHolder.js"
+import {Modal} from "./Modal.js";
 
 
 export function validate(event) {
@@ -23,7 +24,7 @@ export function search() {
 export function getPropertyMarkup(prop) {
     return `
         <div class="prop ${FAVOURITES.has(prop.id.toString()) ? " favourite" : ""}" id="beer${prop.id.toString()}">
-        <h2>${prop.name}</h2>
+        <h2 class="title-button" id="${prop.id}">${prop.name}</h2>
         <button class="addRemoveBtn" value="${prop.id}">${FAVOURITES.has(prop.id.toString()) ? "Remove" : "Add"}</button>
         <p>${prop.description}</p>
         <img src="${prop.image_url}" alt="">
@@ -50,7 +51,12 @@ function isNewPageReady() {
     return PageLoader.isloadRuning && PageLoader.nextPage !== 1 && SEARCH_RESULTS.getBoundingClientRect().bottom < window.innerHeight;
 }
 
-export function favouritesHandler(event){
+export function favouritesHandler(event) {
+    if (event.target.classList.contains("title-button")) {
+        Modal.showSingleModal(event);
+        return;
+    }
+
     if (!(event.target.classList.contains("addRemoveBtn"))) return;
 
     const currentBeer = document.querySelector(`#beer${event.target.value}`);
@@ -82,4 +88,23 @@ export function refreshFavouritesButton() {
 
     FAVOURITES_BUTTON.removeAttribute("disabled");
     FAVOURITES_BUTTON.textContent = `Favourites(${FAVOURITES.size})`;
+}
+
+export function refreshFavouritesClasses() {
+    const displayedProps = SEARCH_RESULTS.querySelectorAll(".prop");
+
+    displayedProps.forEach((prop) => {
+        const id = getPropId(prop.id)
+
+        if (FAVOURITES.has(id)) {
+            prop.classList.add("favourite");
+            return;
+        }
+
+        prop.classList.remove("favourite");
+    });
+}
+
+function getPropId(strId) {
+    return strId.substr(strId.length - 2);
 }

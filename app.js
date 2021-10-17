@@ -43,6 +43,11 @@ CLOSE_MODAL_BUTTON.addEventListener("click", function hideModal() {
 });
 
 MODAL_CONTENT.addEventListener("click", function removeFavourite(event) {
-    if (!(event.target.classList.contains("addRemoveBtn"))) return;
-    Modal.removeFavourite(event.target.value);
+    if (event.target.classList.contains("addRemoveBtn")) {
+        Modal.toggleSingle(event.target);
+        return;
+    }
+    if (event.target.classList.contains("removeBtn")) {
+        Modal.removeFavourite(event.target.value);
+    }
 });

@@ -24,11 +24,11 @@ export class PageLoader {
         SEARCH_RESULTS.innerHTML = "";
     }
 
-    static setQuery(query){
+    static setQuery(query) {
         this.currentQuery = query;
     }
 
-    static listProperties(newPage){
+    static listProperties(newPage) {
         if (!(newPage.length)) {
             SEARCH_RESULTS.insertAdjacentHTML("beforeend", `<p class="error">There is no more valid properties</p>`);
             this.isloadRuning = false;
@@ -39,5 +39,4 @@ export class PageLoader {
         }
         if (this.nextPage === 2) scrollToFirst();
     }
-
 }
