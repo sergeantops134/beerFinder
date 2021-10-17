@@ -92,10 +92,6 @@ padding: 5px;
     left: 20px;
 }
 
-.hidden {
-    display: none;
-}
-
 .favourite {
     color: lightcoral;
 }
@@ -103,4 +99,36 @@ padding: 5px;
 .addRemoveBtn {
     width: fit-content;
     margin: 0 auto;
+}
+
+.modal {
+    position: fixed;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    top: 0;
+    left: 0;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+.modal-content {
+    width: 600px;
+    height: 600px;
+    background-color: white;
+    border-radius: 10px;
+    border: 1px solid black;
+    overflow-y: scroll;
+}
+
+.no-scroll {
+    overflow: hidden;
+}
+
+.hidden {
+    display: none;
+}
+
+.title-button {
+    cursor: pointer;
 }
