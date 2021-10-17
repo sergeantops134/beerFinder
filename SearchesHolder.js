@@ -13,7 +13,7 @@ export class SearchesHolder {
 
     static loadStory() {
         const loadedStory = SEARCHES_STORAGE.getItem("searches");
-        this.story = loadedStory ? loadedStory.split(",") : [];
+        this.story = loadedStory?.split(",") || [];
         this.story.forEach((search) => {
             SEARCHES_HOLDER.insertAdjacentHTML("afterbegin", `<p>${search}</p>`);
         });
