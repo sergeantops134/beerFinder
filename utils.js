@@ -1,5 +1,5 @@
 import {
-    FAVOURITES, FAVOURITES_BUTTON,
+    FAVOURITES, FAVOURITES_BUTTON, FAVOURITES_STORAGE,
     SEARCH_RESULTS,
     SEARCH_TEXT_INPUT,
     UP_ARROW_BUTTON,
@@ -67,6 +67,7 @@ export function favouritesHandler(event) {
         FAVOURITES.delete(event.target.value.toString());
 
         refreshFavouritesButton();
+        saveFavourites();
         return;
     }
 
@@ -75,6 +76,7 @@ export function favouritesHandler(event) {
     FAVOURITES.add(event.target.value.toString());
 
     refreshFavouritesButton();
+    saveFavourites();
 }
 
 export function refreshFavouritesButton() {
@@ -107,4 +109,19 @@ export function refreshFavouritesClasses() {
 
 function getPropId(strId) {
     return strId.substr(strId.length - 2);
+}
+
+export function loadFavourites() {
+    const loadedFavourites = FAVOURITES_STORAGE.getItem("favourites");
+
+    if (!(loadedFavourites)) return;
+
+    loadedFavourites.split(",").forEach((favourite) => {
+        FAVOURITES.add(favourite);
+    });
+}
+
+export function saveFavourites() {
+    const formattedFavourites = Array.from(FAVOURITES).join(",");
+    FAVOURITES_STORAGE.setItem("favourites", formattedFavourites);
 }

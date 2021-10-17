@@ -9,3 +9,5 @@ export const FAVOURITES_BUTTON = document.querySelector("#favouritesBtn");
 export const MODAL_CONTENT = document.querySelector("#modalContent");
 export const VERTICAL_OFFSET = -500;
 export const FAVOURITES = new Set();
+export const SEARCHES_STORAGE = window.sessionStorage;
+export const FAVOURITES_STORAGE = window.localStorage;
