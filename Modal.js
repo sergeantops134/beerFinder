@@ -1,4 +1,5 @@
 import {FAVOURITES, MODAL_CONTENT, SEARCH_RESULTS} from "./const.js";
+import {refreshFavouritesButton} from "./utils.js";
 
 export class Modal {
     static modal = document.querySelector(".modal");
@@ -6,6 +7,7 @@ export class Modal {
     static hideModal() {
         this.modal.classList.add("hidden");
         document.body.classList.remove("no-scroll");
+        refreshFavouritesButton();
     }
 
      static showModal() {

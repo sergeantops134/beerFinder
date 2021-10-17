@@ -71,7 +71,7 @@ export function favouritesHandler(event){
     refreshFavouritesButton();
 }
 
-function refreshFavouritesButton() {
+export function refreshFavouritesButton() {
     const isFavouritesEmpty = !(FAVOURITES.size);
 
     if (isFavouritesEmpty) {

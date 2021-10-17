@@ -11,6 +11,10 @@ import {favouritesHandler, scrollHandler, scrollToFirst, search, validate} from 
 import {Modal} from "./Modal.js";
 
 window.addEventListener("scroll", scrollHandler);
+window.addEventListener("keydown", function closeModalOnEsc(event){
+    if (event.code !== "Escape") return;
+    Modal.hideModal();
+});
 
 SEARCH_TEXT_INPUT.addEventListener("input", validate);
 
