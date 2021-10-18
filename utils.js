@@ -48,7 +48,7 @@ export function scrollHandler() {
 }
 
 function isNewPageReady() {
-    return PageLoader.isloadRuning && PageLoader.nextPage !== 1 && SEARCH_RESULTS.getBoundingClientRect().bottom < window.innerHeight;
+    return PageLoader.isloadRuning && PageLoader.nextPage !== 1 && SEARCH_RESULTS.getBoundingClientRect().bottom < window.innerHeight + 50;
 }
 
 export function favouritesHandler(event) {
@@ -94,16 +94,20 @@ export function refreshFavouritesButton() {
 
 export function refreshFavouritesClasses() {
     const displayedProps = SEARCH_RESULTS.querySelectorAll(".prop");
+    const displayedButtons = SEARCH_RESULTS.querySelectorAll(".addRemoveBtn");
 
-    displayedProps.forEach((prop) => {
+
+    displayedProps.forEach((prop, index) => {
         const id = getPropId(prop.id)
 
         if (FAVOURITES.has(id)) {
             prop.classList.add("favourite");
+            displayedButtons[index].textContent = "Remove";
             return;
         }
 
         prop.classList.remove("favourite");
+        displayedButtons[index].textContent = "Add";
     });
 }
 
